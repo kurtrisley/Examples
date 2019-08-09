@@ -1,0 +1,26 @@
+﻿@model GolfClubs.ViewModels.SearchModel
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Search</h2>
+
+
+    @using (Html.BeginForm("GetCategory", "Search", FormMethod.Get))
+    {
+    <div class="form-horizontal">
+        @Html.Label("Category")
+        @Html.DropDownListFor(Model => Model.SelectedCategory, Model.Categories)
+        <input type="submit" value="Go" class="btn btn-default">
+    </div>
+    }
+    @using (Html.BeginForm("GetType", "Search", FormMethod.Get))
+    { 
+    <div class="form-horizontal">
+        @Html.Label("Types")
+        @Html.DropDownListFor(m => m.SelectedType, Model.Types)
+        <input type="submit" value="Go" class="btn btn-default" />
+     </div>
+     }
+    
+

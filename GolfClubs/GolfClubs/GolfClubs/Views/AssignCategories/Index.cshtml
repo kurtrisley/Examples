@@ -1,0 +1,42 @@
+﻿@model GolfClubs.ViewModels.AssignCategoryViewModel
+
+@{
+    ViewBag.Title = "Add Categories";
+}
+
+<h2>Index</h2>
+
+<h3>Add Categories to @Model.ClubName</h3>
+
+@using (Html.BeginForm("Index", "AssignCategories"))
+{
+    @Html.HiddenFor(model => model.ClubID)
+    @Html.DropDownListFor(model => model.CategoryID, Model.Categories)
+    @Html.ValidationMessageFor(model => model.CategoryID)
+    <p>
+        <br />
+        <input type="submit" value="Save" />
+    </p>
+}
+
+<h3>@Model.ClubName Categories</h3>
+
+<table>
+
+    @foreach (var item in Model.AssociatedCategories)
+    {
+        <tr>
+            <td>
+                @Html.ActionLink("Delete", "Delete", new { CategoryID = item.ID, ClubID = Model.ClubID })
+            </td>
+            <td>&nbsp;&nbsp;</td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CategoryName)
+            </td>
+        </tr>
+    }
+
+</table>
+
+<br />
+@Html.ActionLink("Back to List", "Index", "Club")
